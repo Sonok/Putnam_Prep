@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage{putnamprep}
+
+\begin{document}
+\sessiontitle{Session 2 (struggle day)}{Putnam 2017 A1 \quad$\cdot$\quad up to 2.5 hours}
+
+\section*{How this session works}
+
+This is a \textbf{struggle day}. No new theory. One problem, up to 90 minutes of real effort, then a careful write-up, then reflection. It uses only what Session 1 taught: small cases, contradiction, closure arguments in the spirit of induction, and the write-up discipline.
+
+\paragraph{Before you start (10 min).} From memory, without opening Session 1:
+\begin{itemize}
+  \item Explain Cantor's diagonal argument out loud using the 3-string game.
+  \item State the two-base-case trap in induction.
+  \item Re-prove that there are infinitely many primes of the form $4k-1$, on paper, in full.
+\end{itemize}
+Then check against Session 1. If any of the three is shaky, fix it now; the struggle problem can wait ten minutes.
+
+\paragraph{Rules for the struggle block.}
+\begin{enumerate}
+  \item Timer on. Write the start time at the top of your paper.
+  \item Keep a running ``ideas tried'' list on the page, including the ones that failed. Failed ideas are data, not waste.
+  \item Hints are on the last pages, staged. No Hint 1 before 30 minutes, no Hint 2 before 50, no Hint 3 before 75.
+  \item Solutions are in \texttt{session02\_solutions.pdf}. Do not open it until your write-up is done, even if you think you solved it.
+  \item If you solve it, you are \emph{not} done. The write-up is the point.
+\end{enumerate}
+
+\paragraph{What to hand back.} Fill in \texttt{session02\_writeup.tex} with your written solution, the ideas-tried list, and the reflection. That file is what gets graded.
+
+\section{The problem \hfill up to 90 min}
+
+\begin{problem}[Putnam 2017, A1]
+Let $S$ be the smallest set of positive integers such that
+\begin{enumerate}
+  \item[(a)] $2$ is in $S$,
+  \item[(b)] $n$ is in $S$ whenever $n^2$ is in $S$, and
+  \item[(c)] $(n+5)^2$ is in $S$ whenever $n$ is in $S$.
+\end{enumerate}
+Which positive integers are not in $S$?
+
+\noindent (The set $S$ is ``smallest'' in the sense that $S$ is contained in any other set of positive integers satisfying (a), (b), (c).)
+\end{problem}
+
+\begin{why}
+It is a genuine A1. It is solved with exactly the tools from Session 1: compute small cases, prove a closure property by the same reasoning as an induction step, and give a two-direction argument. And the write-up has a classic trap: the word ``smallest'' is a hypothesis, and most failed solutions never use it.
+\end{why}
+
+\paragraph{Checkpoints.} Not hints, just honest questions.
+\begin{itemize}
+  \item \textbf{15 min:} have you computed at least ten elements of $S$ by hand?
+  \item \textbf{30 min:} do you have a \emph{conjecture} for the answer? Write it as a full sentence before doing anything else.
+  \item \textbf{45 min:} a question of the form ``which integers are \emph{not} in $S$'' needs \emph{two} proofs: one that certain integers are in $S$, and one that the others are not. Have you identified both?
+\end{itemize}
+
+%=====================================================================
+\section{Write-up \hfill 30 min}
+
+Write the main problem up as if to a Putnam grader, in \texttt{session02\_writeup.tex}. Before writing, run this checklist, which is the guide's Section 1.5 condensed:
+\begin{itemize}
+  \item[\checkbox] \textbf{State the answer or claim in the first line.} Do not bury the lead.
+  \item[\checkbox] \textbf{Every hypothesis used?} For the main problem: (a), (b), (c), \emph{and} ``smallest.'' An unused hypothesis almost always means a hole.
+  \item[\checkbox] \textbf{No claim you know to be false.} A grader who sees one stops reading.
+  \item[\checkbox] \textbf{Messy? Restructure first.} Pull out a lemma. A clean lemma plus a three-line main argument beats a page of cases.
+  \item[\checkbox] \textbf{Name the contradiction.} If you argue by contradiction, the last sentence says exactly what impossible thing you reached.
+\end{itemize}
+
+If you solved the main problem in under 60 minutes and have time left:
+
+\begin{problem}[Putnam 2005, A1]
+Show that every positive integer is a sum of one or more numbers of the form $2^r 3^s$, where $r$ and $s$ are nonnegative integers and no summand divides another. (For example, $23 = 9 + 8 + 6$.)
+\end{problem}
+This one is strong induction, with the case split and the choice of basis being the whole problem.
+
+%=====================================================================
+\section{Reflection and close-out \hfill 15 min}
+
+\begin{enumerate}
+  \item \emph{Now} open \texttt{session02\_solutions.pdf}. Compare line by line against your write-up. For each difference decide: cosmetic, or a real gap?
+  \item In the write-up file, answer: minutes to first correct conjecture on the main problem; minutes to a proof you believed; which hint, if any, you used; the idea that unlocked it, in one sentence; one thing in your write-up you would lose points for.
+  \item Log the session in \texttt{logs/ch01\_communication\_tools.md}: fill the rows for Exercises 1.49 and 1.33, add a line to the running log.
+  \item In 2 or 3 days, re-derive the main problem from a blank page without this sheet. That re-derivation is where the skill locks in. Put it on your calendar now.
+\end{enumerate}
+
+%=====================================================================
+\clearpage
+\section*{Hints for the main problem}
+Staged at 30, 50, and 75 minutes. Scroll only when the timer says so.
+
+\spoilerspace
+\begin{hint}[1, after 30 min]
+Compute concretely. $2 \in S$, so $(2+5)^2 = 49 \in S$, so $7 \in S$. Keep going. What residues mod 5 appear? Which never can?
+\end{hint}
+
+\spoilerspace
+\begin{hint}[2, after 50 min]
+Two directions. (i) Find a set $T$ that obviously satisfies (a), (b), (c); then ``smallest'' gives $S \subseteq T$. (ii) Show $T \subseteq S$ by actually generating every element of $T$ from $2$ using the rules. For (ii), first prove a small lemma: if $n \in S$ then $n + 5 \in S$. Why?
+\end{hint}
+
+\spoilerspace
+\begin{hint}[3, after 75 min]
+The $n+5$ lemma means you only need \emph{one} element of $S$ in each residue class mod 5 that occurs, and you need it to be the smallest possible one. You already have $2$ and $7$. Chase: $49 \to 64 = 49 + 15 \to 8$. Then find a square that is $\equiv 1 \pmod 5$ and provably in $S$, take its root, and keep walking down. Target: show $2, 3, 4, 6 \in S$.
+\end{hint}
+
+\clearpage
+\section*{Hint for the optional problem (Putnam 2005 A1)}
+\spoilerspace
+\begin{hint}
+Strong induction on $n$. Even $n$ is easy from $n/2$. For odd $n$, subtract the largest power of $3$ that fits and look at what is left. Why can none of the leftover summands divide, or be divided by, that power of $3$?
+\end{hint}
+\end{document}

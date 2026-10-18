@@ -1,0 +1,182 @@
+\documentclass[11pt]{article}
+\usepackage{putnamprep}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Model solution}
+\newtheorem{exercise}{Exercise}
+
+\begin{document}
+\sessiontitle{Session 1 (lesson day)}{Proof by contradiction, induction, countability, and how to write a solution \quad$\cdot$\quad about 2 hours}
+
+\section*{How this session works}
+
+This sheet is self-contained. Everything you need is stated here; the guide is only for comparing afterwards. This is a \textbf{lesson day}: read the lesson slowly, do the short exercises on it, write one proof up properly. The 90-minute struggle problem is Session 2, a separate sitting. Lesson days and struggle days are never combined.
+
+
+\paragraph{What to hand back.} Fill in \texttt{session01\_writeup.tex} with your proof for Exercise 4 and the short reflection. That file is what gets graded.
+
+%=====================================================================
+\section{Lesson \hfill 60 to 90 min on first contact}
+
+Read this slowly, with a pen. Verify every identity by expanding it. If Cantor takes an hour, that is normal; it did on 17 October.
+
+\subsection{Two ways to prove things}
+
+\paragraph{Proof by contradiction.} To prove a statement $q$ from an assumption $p$: assume $p$ is true and $q$ is false, and derive something impossible. The guide's rule of thumb for when to use it:
+\begin{itemize}
+  \item to prove something is \emph{infinite}, assume it is finite;
+  \item to prove something does \emph{not exist}, assume it exists;
+  \item in general, to prove a negative, assume the positive.
+\end{itemize}
+
+\paragraph{Proof by induction.} To prove a statement $P(n)$ for every integer $n \ge 1$:
+\begin{enumerate}
+  \item[\textbf{Basis.}] Prove $P(1)$.
+  \item[\textbf{Step.}] Assume $P(n)$ holds for some $n \ge 1$, and prove $P(n+1)$.
+\end{enumerate}
+Two variants you must have straight:
+\begin{itemize}
+  \item \textbf{Strong induction.} In the step, assume \emph{all} of $P(1), P(2), \dots, P(n)$ and prove $P(n+1)$. Use it when $P(n+1)$ depends on cases much smaller than $n$, not just $n$ itself. It still needs a basis.
+  \item \textbf{The two-base-case trap.} If your step uses $P(n-1)$ as well as $P(n)$ to get $P(n+1)$, then your basis must prove \emph{two consecutive} cases, $P(1)$ and $P(2)$. Otherwise the step is never valid at $n = 1$ and the whole proof is wrong. Graders check this.
+\end{itemize}
+Rules of thumb: induction when the problem reduces to smaller cases; induction for anything defined recursively.
+
+\subsection{Countability}
+
+\begin{definition}
+A set $S$ is \emph{countable} if there is a bijection $f: S \to \N$. Equivalently, an infinite set is countable if its elements can be listed as $s_1, s_2, s_3, \dots$ with every element appearing. A set is \emph{uncountable} if it is infinite and not countable.
+\end{definition}
+
+\begin{theorem}
+$\N$, $\Z$, and $\Q$ are countable. $\R$ is uncountable.
+\end{theorem}
+
+\begin{theorem}
+Let $A_1, A_2, A_3, \dots$ be countable sets. Then
+\begin{enumerate}
+  \item[(a)] the union $\bigcup_{n=1}^{\infty} A_n$ is countable;
+  \item[(b)] any finite product $A_1 \times A_2 \times \cdots \times A_n$ is countable.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Cantor's diagonal argument]
+Let $A_1, A_2, \dots$ be sets, each with at least two elements. Then the set of all infinite sequences $(a_1, a_2, a_3, \dots)$ with $a_i \in A_i$ is uncountable.
+\end{theorem}
+\begin{proof}
+Suppose the set of sequences is countable, and list them: $s_1, s_2, s_3, \dots$, where $s_i = (a_{i1}, a_{i2}, a_{i3}, \dots)$. We build a sequence that is not on the list. For each $i$, choose $b_i \in A_i$ with $b_i \ne a_{ii}$; this is possible because $A_i$ has at least two elements. The sequence $b = (b_1, b_2, b_3, \dots)$ differs from $s_i$ in position $i$, for every $i$. So $b$ is not on the list, contradicting the assumption that the list was complete.
+\end{proof}
+The picture: write the listed sequences as rows and change every entry on the diagonal.
+
+\noindent\textit{(Resume here on 18 October.)}
+\begin{theorem}
+If $X$ is countable, then the set of all \emph{finite} subsets of $X$ is countable.
+\end{theorem}
+\begin{proof}
+List $X$ as $x_1, x_2, x_3, \dots$. Every finite subset has a \emph{largest index}: for $\{x_2, x_5\}$ it is $5$, for $\{x_1, x_3, x_9\}$ it is $9$. Sort the finite subsets into batches by largest index.
+\begin{itemize}
+  \item Batch 1: largest index $1$. Just $\{x_1\}$.
+  \item Batch 2: largest index $2$. $\{x_2\}$ and $\{x_1, x_2\}$.
+  \item Batch 3: largest index $3$. $\{x_3\}, \{x_1, x_3\}, \{x_2, x_3\}, \{x_1, x_2, x_3\}$.
+  \item Batch $n$: largest index $n$. You must take $x_n$, and you may take any subset of $\{x_1, \dots, x_{n-1}\}$, so there are $2^{n-1}$ subsets in the batch. Finite.
+\end{itemize}
+Write out batch 1, then batch 2, then batch 3, and so on (put the empty set first if you count it). Each batch is finite, so every finite subset appears at some finite position of this list. No gap. So the finite subsets are countable.
+\end{proof}
+\textbf{Check:} which batch is $\{x_3, x_7, x_8\}$ in? How many subsets are in batch 4? Write them all out.
+
+Contrast: the set of \emph{all} subsets of an infinite set is uncountable (that is a classical example you will meet later in the chapter). The batch trick fails because an infinite subset like $\{x_2, x_4, x_6, \dots\}$ has no largest index, so it never lands in any batch. And no other trick can fix it: a subset of $X$ is the same thing as an infinite $0$--$1$ string (spot $k$ is $1$ if $x_k$ is in the subset), and Theorem 3 says those cannot be listed. Finite subsets are countable; all subsets are not.
+
+\subsection{Five algebraic identities worth memorizing}
+
+\begin{theorem}
+For all real (or complex) $a, b, x, y, z$ and positive integers $n$:
+\begin{enumerate}
+  \item[(a)] $a^n - b^n = (a-b)\left(a^{n-1} + a^{n-2}b + a^{n-3}b^2 + \cdots + ab^{n-2} + b^{n-1}\right)$.
+  \item[(b)] If $n$ is \emph{odd}, $a^n + b^n = (a+b)\left(a^{n-1} - a^{n-2}b + a^{n-3}b^2 - \cdots - ab^{n-2} + b^{n-1}\right)$.
+  \item[(c)] $x^3 + y^3 + z^3 - 3xyz = (x+y+z)\left(x^2 + y^2 + z^2 - xy - yz - zx\right)$.
+  \item[(d)] $x^2 + y^2 + z^2 - xy - yz - zx = \tfrac{1}{2}\left((x-y)^2 + (y-z)^2 + (z-x)^2\right)$.
+  \item[(e)] $x^4 + 4y^4 = \left(x^2 + 2y^2 + 2xy\right)\left(x^2 + 2y^2 - 2xy\right)$.
+\end{enumerate}
+\end{theorem}
+When they show up:
+\begin{itemize}
+  \item (a): $a - b$ divides $a^n - b^n$. So e.g.\ $2^n - 1$ is composite whenever $n$ is composite, and $x - 1$ divides $x^n - 1$ as polynomials.
+  \item (b): $a + b$ divides $a^n + b^n$ for odd $n$. So $2^n + 1$ can only be prime if $n$ is a power of $2$.
+  \item (c) and (d) together: for real $x, y, z$, the right side of (d) is $\ge 0$ with equality iff $x = y = z$. Hence $x^3 + y^3 + z^3 = 3xyz$ exactly when $x + y + z = 0$ or $x = y = z$.
+  \item (e), the Sophie Germain identity: $n^4 + 4$ is composite for every $n \ge 2$, and $n^4 + 4m^4$ factors over the integers.
+\end{itemize}
+
+\subsection{What a 10/10 write-up looks like}
+
+Here is Euclid's proof, written the way a grader wants it, with notes on why each sentence is there.
+
+\begin{example}[Infinitely many primes]
+\textit{Claim.} There are infinitely many primes.
+
+\textit{Proof.} Suppose, for contradiction, that there are only finitely many primes, and let $p_1 = 2,\ p_2 = 3,\ \dots,\ p_n$ be all of them. Consider $N = p_1 p_2 \cdots p_n + 1$. Since $N > 1$, $N$ has at least one prime divisor; call it $p$. Since $p_1, \dots, p_n$ are all the primes, $p = p_i$ for some $i$. Then $p_i$ divides both $N$ and $p_1 \cdots p_n$, so $p_i$ divides their difference, which is $1$. No prime divides $1$. This contradiction shows the primes are infinite. \qed
+\end{example}
+Why each sentence is there:
+\begin{itemize}
+  \item ``Suppose, for contradiction'' tells the grader the shape of the argument in the first four words.
+  \item ``Since $N > 1$'' is the one-line justification that $N$ has a prime divisor at all. Students skip it; graders notice.
+  \item ``$p = p_i$ for some $i$'' is where the finiteness assumption is actually used. Every hypothesis must be visibly used somewhere.
+  \item ``divides their difference'' is the key step, and it is stated as a fact about divisibility, not waved at.
+  \item ``No prime divides 1'' names the contradiction explicitly. Do not end a proof with ``contradiction!'' and leave the grader to find it.
+\end{itemize}
+
+And a second, shorter model, so you see the same discipline on a different problem.
+
+\begin{example}
+\textit{Claim.} If $a, b, c$ are positive integers and $a + b + c$ divides $abc$, then $a + b + c$ is composite.
+
+\textit{Proof.} Suppose not. Since $a + b + c \ge 3 > 1$, it is then prime. A prime dividing the product $abc$ divides one of the factors; without loss of generality $a + b + c$ divides $a$. But $0 < a < a + b + c$, and a positive integer has no positive multiple smaller than itself. Contradiction. \qed
+\end{example}
+Note the ``$\ge 3 > 1$'': ``not composite'' includes $1$, and the proof has to rule it out.
+
+%=====================================================================
+\section{Exercises on the lesson \hfill 30 min}
+
+Do these on paper, quickly. They are checks, not struggles. Five minutes each.
+
+\begin{exercise}
+Using identity (a), prove that if $n$ is composite then $2^n - 1$ is composite.
+\end{exercise}
+
+\begin{exercise}
+Using identity (e), show that $n^4 + 4$ is never prime for $n \ge 2$. Which factor is the smaller one, and why is it at least $2$?
+\end{exercise}
+
+\begin{exercise}
+Here is a wrong proof. Find the error.
+\begin{quote}
+\textit{Claim: all horses are the same color. Induction on the number $n$ of horses. Basis: one horse is the same color as itself. Step: given $n+1$ horses, remove one; the remaining $n$ are the same color by hypothesis. Put it back and remove a different one; again the remaining $n$ are the same color. So all $n+1$ share a color.}
+\end{quote}
+Say exactly which value of $n$ the step fails for, and connect it to the two-base-case trap.
+\end{exercise}
+
+\begin{exercise}[the main warm-up, 10 min]
+Prove that there are infinitely many primes of the form $4k - 1$.
+\end{exercise}
+This is Euclid's proof with one extra wrinkle. Model it on the write-up above. If $p_1, \dots, p_n$ are supposedly all such primes, the number $p_1 \cdots p_n + 1$ is \emph{not} good enough; find a number that is odd, is coprime to every $p_i$, and is forced to have a prime factor of the form $4k-1$. If you finish early: in one sentence, why does the same idea fail for primes of the form $4k + 1$?
+
+%=====================================================================
+\section{Write-up \hfill 20 min}
+
+Write Exercise 4 up in \texttt{session01\_writeup.tex} as if to a Putnam grader. Model it on the Euclid write-up above. Before writing, run this checklist, which is the guide's Section 1.5 condensed:
+\begin{itemize}
+  \item[\checkbox] \textbf{State the claim in the first line.} Do not bury the lead.
+  \item[\checkbox] \textbf{Every hypothesis used?} An unused hypothesis almost always means a hole.
+  \item[\checkbox] \textbf{No claim you know to be false.} A grader who sees one stops reading.
+  \item[\checkbox] \textbf{Name the contradiction.} The last sentence says exactly what impossible thing you reached.
+\end{itemize}
+
+\section{Reflection and close-out \hfill 10 min}
+\begin{enumerate}
+  \item \emph{Now} open \texttt{session01\_solutions.pdf} and compare your Exercise 4 proof line by line. For each difference decide: cosmetic, or a real gap?
+  \item In the write-up file: which theorem or definition took longest to land, and what finally made it click? One thing in your proof you would lose points for.
+  \item Log the session in \texttt{logs/ch01\_communication\_tools.md}: tick the theorems you can now state and prove, add a line to the running log.
+  \item In 2 or 3 days, re-explain Cantor's argument out loud from memory using the 3-string game, and re-prove Exercise 4 from a blank page.
+\end{enumerate}
+\end{document}

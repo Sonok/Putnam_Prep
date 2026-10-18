@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\usepackage{putnamprep}
+\begin{document}
+\sessiontitle{Daily Log: 17 October 2026}{Session 1, lesson day \quad$\cdot$\quad Chapter 1, Communication Tools}
+
+\section*{Summary}
+First real study session. Worked through the lesson portion of Session 1 (proof techniques and countability) at a first-contact pace. About 90 minutes on the lesson, most of it on Cantor's diagonal argument. Stopped before the lesson exercises and the main struggle problem. Those carry over to the next sitting.
+
+\section*{Covered}
+\begin{itemize}
+  \item \textbf{Proof by contradiction and induction.} Read the two methods, strong induction, and the two-base-case trap.
+  \item \textbf{Definition of countable.} Understood as ``can be written in a numbered list with no element missing.'' Clarified the direction confusion: a bijection $S \to \N$ (element in, slot number out) and a list $\N \to S$ (slot in, element out) are inverses and describe the same thing.
+  \item \textbf{Definition of bijection.} Injective (no two inputs share an output) plus surjective (every output is hit).
+  \item \textbf{Theorem 1} ($\N, \Z, \Q$ countable, $\R$ uncountable) and \textbf{Theorem 2} (countable unions and finite products of countable sets are countable). Read and understood the statements. Cartesian product $\times$ clarified: the set of ordered tuples. Proof of the product case via the anti-diagonal walk on a grid, or the injection $(a_i, b_j) \mapsto 2^i 3^j$.
+  \item \textbf{Theorem 3, Cantor's diagonal argument.} This was the hard one. What finally worked: the ``game'' version. Someone hands over any list of 0--1 strings; build $b$ so that spot $k$ of $b$ is the opposite of spot $k$ of string $k$; then $b$ differs from every string on the list, so the list has a gap. Ran it by hand on length-3 strings and got the right answer ($b = 101$ for the list $001, 111, 010$).
+\end{itemize}
+
+\section*{Concepts that needed untangling}
+Worth rereading in a few days to see if they still make sense.
+\begin{itemize}
+  \item \textbf{Gap vs.\ collision.} A gap is an element of $S$ missing from the list; that is the failure that proves uncountability. A repeated element in a list is harmless (delete the repeat). Two different elements assigned the same slot is a real failure but is not what the diagonal argument looks for.
+  \item \textbf{Defeating every list at once.} Uncountable means \emph{every} list has a gap. The diagonal argument handles all lists by never using anything specific about the list; it works on an arbitrary one, so the conclusion covers all of them. Same logic as proving a ``for all'' statement by taking an unspecified case.
+  \item \textbf{Contradiction, not converse.} Assuming a complete list exists and finding a gap is proof by contradiction. ``Converse'' means something else (swapping hypothesis and conclusion).
+  \item \textbf{Why ``at least two elements.''} So that ``the opposite'' always exists: spot $k$ of $b$ needs something in $A_k$ other than the diagonal entry.
+  \item \textbf{Finite vs.\ infinite products.} Finitely many countable factors: countable (Theorem 2). Infinitely many factors with at least two elements each: uncountable (Theorem 3).
+\end{itemize}
+
+\section*{In my own words}
+\begin{quote}
+To show $S$ is uncountable, suppose a complete list of $S$ exists. Using only the fact that it is a list, build an element of $S$ not on it. That contradicts completeness. So no complete list exists.
+\end{quote}
+
+\section*{Not yet done}
+\begin{itemize}
+  \item \textbf{Theorem 4} (finite subsets of a countable set are countable). Not read yet. This is where tomorrow starts.
+  \item The five algebraic identities (Lesson 1.3) and the two annotated model write-ups (Lesson 1.4).
+  \item Lesson exercises 1 to 4, including the $4k-1$ primes proof.
+  \item Main struggle problem (Putnam 2017 A1). Moved to a separate sitting.
+\end{itemize}
+
+\section*{Pace note}
+The sheet budgeted 30 minutes for the lesson. It took 90, and that was the right amount of time for first contact with Cantor. Going forward, sessions are split into lesson days and struggle days rather than both in one sitting. Session 1 will be re-split accordingly.
+
+\section*{Next sitting}
+\begin{enumerate}
+  \item Re-explain Cantor's argument out loud from memory, using the 3-string game, before opening anything. Five minutes.
+  \item Open \texttt{sessions/session01.pdf} and resume at \textbf{Theorem 4} in Lesson 1.2. Read it, follow the batch proof, answer the check question under it.
+  \item Continue through Lesson 1.3 (identities) and 1.4 (model write-ups), then do the four lesson exercises. Write the $4k-1$ proof in full.
+  \item Stop. The main problem is the sitting after that.
+\end{enumerate}
+
+\bigskip
+\noindent\textbf{Time:} about 1.5 hours on the lesson plus discussion. \quad \textbf{Mood:} frustrated mid-way, landed it by the end.
+\end{document}

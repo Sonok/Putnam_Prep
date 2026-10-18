@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+\usepackage{putnamprep}
+
+\begin{document}
+\sessiontitle{Session 2: Solutions}{Do not open until your write-up is done.}
+
+\section*{Main problem: Putnam 2017 A1}
+
+\begin{answer}
+The positive integers not in $S$ are exactly $1$ and the multiples of $5$.
+\end{answer}
+
+Let $T = \{\, n \ge 2 : 5 \nmid n \,\}$. We prove $S = T$.
+
+\paragraph{Step 1: $S \subseteq T$.} $T$ satisfies all three rules.
+\begin{itemize}
+  \item[(a)] $2 \in T$.
+  \item[(b)] If $n^2 \in T$, then $n^2 \ge 2$ so $n \ge 2$, and $5 \nmid n^2$ so $5 \nmid n$ (as $5$ is prime). So $n \in T$.
+  \item[(c)] If $n \in T$, then $5 \nmid n+5$ and $(n+5)^2 \ge 49 \ge 2$. So $(n+5)^2 \in T$.
+\end{itemize}
+Since $S$ is the smallest set satisfying (a), (b), (c), we get $S \subseteq T$.
+
+\emph{This is the step people skip. ``Smallest'' is a hypothesis; it is used exactly here and nowhere else.}
+
+\paragraph{Step 2.}
+\begin{lemma}
+If $n \in S$, then $n + 5 \in S$.
+\end{lemma}
+\begin{proof}
+$n \in S$ gives $(n+5)^2 \in S$ by (c), hence $n+5 \in S$ by (b).
+\end{proof}
+
+\paragraph{Step 3: $2, 3, 4, 6 \in S$.}
+\begin{align*}
+  2 \in S &\quad\text{by (a)}\\
+  49 = (2+5)^2 \in S,\ \text{so } 7 \in S &\quad\text{by (c), then (b)}\\
+  64 = 49 + 15 \in S,\ \text{so } 8 \in S &\quad\text{lemma three times, then (b)}\\
+  2916 = (49+5)^2 \in S &\quad\text{by (c)}\\
+  3136 = 2916 + 5\cdot 44 = 56^2 \in S,\ \text{so } 56 \in S &\quad\text{lemma, then (b)}\\
+  81 = 56 + 25 = 9^2 \in S,\ \text{so } 9 \in S,\ \text{so } 3 \in S &\quad\text{lemma, (b), (b)}\\
+  121 = 56 + 65 = 11^2 \in S,\ \text{so } 11 \in S &\quad\text{lemma, (b)}\\
+  16 = 11 + 5 = 4^2 \in S,\ \text{so } 4 \in S &\quad\text{lemma, (b)}\\
+  36 = 11 + 25 = 6^2 \in S,\ \text{so } 6 \in S &\quad\text{lemma, (b)}
+\end{align*}
+
+\paragraph{Step 4: $T \subseteq S$.} Every element of $T$ is $\equiv 1, 2, 3,$ or $4 \pmod 5$ and is at least $2$. The smallest elements of $T$ in those classes are $6, 2, 3, 4$ respectively, all in $S$ by Step 3. By the lemma, every $n \in T$ is reached by adding $5$ repeatedly to one of these. So $T \subseteq S$.
+
+Combining Steps 1 and 4, $S = T$. The integers not in $S$ are $1$ and the multiples of $5$. \qed
+
+\begin{gradingnote}\leavevmode
+\begin{itemize}
+  \item A write-up that only does Step 4 (shows lots of things \emph{are} in $S$) with no Step 1 earns at most 2 or 3 points. The question asks which integers are \emph{not} in $S$; without Step 1 you have not shown any integer is excluded.
+  \item A write-up that only does Step 1 earns about 1 point.
+  \item The lemma in Step 2 should be stated and proved separately. It turns Step 4 into a two-line argument instead of a mess.
+  \item You do not need this exact chain in Step 3; any correct chain to $\{2,3,4,6\}$ is fine. But every number you claim is in $S$ must have a stated reason.
+\end{itemize}
+\end{gradingnote}
+
+\section*{Optional problem: Putnam 2005 A1}
+
+\begin{claim}
+Every positive integer $n$ is a sum of numbers of the form $2^r 3^s$ ($r, s \ge 0$) in which no summand divides another.
+\end{claim}
+\begin{proof}
+Strong induction on $n$. Base: $n = 1 = 2^0 3^0$.
+
+Let $n \ge 2$ and assume the claim for all smaller positive integers.
+
+\emph{Case $n$ even.} Write $n/2$ as such a sum and double every summand. Doubling preserves divisibility between summands ($a \mid b \iff 2a \mid 2b$), so no summand divides another.
+
+\emph{Case $n$ odd.} Let $3^s$ be the largest power of $3$ with $3^s \le n$, so $3^s \le n < 3^{s+1}$. Let $m = n - 3^s$. Then $m$ is even and
+\[ 0 \le m < 3^{s+1} - 3^s = 2 \cdot 3^s. \]
+If $m = 0$ then $n = 3^s$ and we are done. If $m > 0$, apply the hypothesis to $m/2$ and double, so $m$ is a sum of terms $2^r 3^t$ with $r \ge 1$ and no term dividing another. Each such term is at most $m < 2\cdot 3^s$, and since $r \ge 1$, $3^t \le \text{term}/2 < 3^s$, so $t < s$.
+
+Now $n = 3^s + (\text{those terms})$. Check divisibility:
+\begin{itemize}
+  \item $3^s$ does not divide any term $2^r 3^t$, because $t < s$.
+  \item No term $2^r 3^t$ divides $3^s$, because $r \ge 1$.
+\end{itemize}
+So $n$ is represented as required.
+\end{proof}
+
+\begin{gradingnote}\leavevmode
+The two bullets at the end \emph{are} the problem. The inequality $t < s$ needs both the bound $m < 2 \cdot 3^s$ and $r \ge 1$; say both.
+\end{gradingnote}
+\end{document}

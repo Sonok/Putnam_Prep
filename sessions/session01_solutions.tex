@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+\usepackage{putnamprep}
+
+\begin{document}
+\sessiontitle{Session 1: Solutions}{Lesson exercises. Do not open until your Exercise 4 write-up is done.}
+
+\section*{Exercises on the lesson}
+
+\paragraph{Exercise 1.} Write $n = ab$ with $1 < a, b < n$. By identity (a) with $a^b$ in place of $a$ and $1$ in place of $b$: $2^n - 1 = (2^a)^b - 1 = (2^a - 1)\left((2^a)^{b-1} + \cdots + 1\right)$. The first factor satisfies $1 < 2^a - 1 < 2^n - 1$, so $2^n - 1$ is composite.
+
+\paragraph{Exercise 2.} With $y = 1$: $n^4 + 4 = (n^2 + 2n + 2)(n^2 - 2n + 2)$. The smaller factor is $n^2 - 2n + 2 = (n-1)^2 + 1 \ge 2$ for $n \ge 2$, and it is less than $n^4 + 4$, so the factorization is nontrivial.
+
+\paragraph{Exercise 3.} The step fails at $n = 1$: with two horses, removing one leaves a single horse, and the two singleton sets do not overlap, so there is no horse in common to transfer the color through. The step silently needs $n \ge 2$, so the basis would have to cover $n = 2$ as well, and of course $P(2)$ is false.
+
+\section*{Exercise 4: Infinitely many primes of the form $4k-1$}
+
+See the guide, page 11, Example 1.3(b). The skeleton:
+
+\begin{claim}
+There are infinitely many primes congruent to $3 \pmod 4$.
+\end{claim}
+\begin{proof}
+Suppose not, and let $p_1 = 3,\ p_2 = 7,\ \dots,\ p_n$ be the complete list. Set $d = 4p_1 p_2 \cdots p_n - 1$.
+\begin{itemize}
+  \item $d > 1$, so $d$ has at least one prime factor.
+  \item $d$ is odd, so $2 \nmid d$.
+  \item $d \equiv -1 \pmod{p_i}$ for every $i$, so no $p_i$ divides $d$.
+  \item Hence every prime factor of $d$ is $\equiv 1 \pmod 4$: it is odd, and it is not $\equiv 3 \pmod 4$ because the $p_i$ were all such primes.
+  \item A product of integers $\equiv 1 \pmod 4$ is $\equiv 1 \pmod 4$, so $d \equiv 1 \pmod 4$.
+  \item But $d = 4(\cdots) - 1 \equiv 3 \pmod 4$. Contradiction.\qedhere
+\end{itemize}
+\end{proof}
+
+\begin{gradingnote}\leavevmode
+The bullets ``$d$ is odd'' and ``a product of $1 \bmod 4$ numbers is $1 \bmod 4$'' must both appear explicitly. Skipping either costs points.
+\end{gradingnote}
+
+\paragraph{Why it fails for $4k+1$.} A product of numbers $\equiv 3 \pmod 4$ can be $\equiv 1 \pmod 4$ (e.g.\ $3 \cdot 7 = 21$), so from ``$d \equiv 1 \pmod 4$'' you cannot conclude $d$ has a prime factor $\equiv 1 \pmod 4$. The $4k+1$ case needs a different idea: any odd prime dividing $m^2 + 1$ is $\equiv 1 \pmod 4$.
+
+\end{document}
