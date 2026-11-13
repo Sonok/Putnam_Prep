@@ -1,0 +1,36 @@
+\documentclass[11pt]{article}
+\usepackage{../putnamprep}
+\begin{document}
+\sessiontitle{Test 001}{One problem \quad$\cdot$\quad AoPS level about 4.5 \quad$\cdot$\quad 45 minutes, hard cap}
+
+\paragraph{Rules.}
+\begin{enumerate}
+  \item Write the start time. Stop at 45 minutes, writing included.
+  \item Try small cases first.
+  \item Write a proof even if it is partial. Say plainly where it stops.
+  \item You may quote any standard theorem by name.
+  \item The hint is on page 2. Not before 25 minutes. If you use it, say so.
+  \item Do not open \texttt{test\_001\_lesson.pdf} until your proof is written.
+\end{enumerate}
+
+\paragraph{Hand back.} Type your proof into a copy of \texttt{my\_solution.tex}, or write by hand and give Claude photos. Then say ``grade test 001.''
+
+\vspace{10pt}\hrule\vspace{10pt}
+
+\begin{problem}
+A sequence is defined by $a_1 = 1$, $a_2 = 3$, and
+\[ a_{n+1} = 3a_n - 2a_{n-1} \qquad \text{for all } n \ge 2. \]
+Find a formula for $a_n$ in terms of $n$, and prove that it is correct for every positive integer $n$.
+\end{problem}
+
+\vspace{10pt}\hrule
+
+\clearpage
+\section*{Hint}
+Not before 25 minutes.
+
+\spoilerspace
+\begin{hint}
+Compute $a_3, a_4, a_5, a_6$ and add $1$ to each. Once you have a guess, prove it by induction. Look at how many earlier terms the rule uses, and choose your base cases to match.
+\end{hint}
+\end{document}

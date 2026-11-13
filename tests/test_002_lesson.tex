@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+\usepackage{../putnamprep}
+\begin{document}
+\sessiontitle{Test 002: Lesson and solution}{Technique: pigeonhole \quad$\cdot$\quad files under \texttt{techniques/04\_pigeonhole}}
+
+\section*{The technique}
+
+\paragraph{Pigeonhole.} If more items than boxes, some box holds at least two items.
+
+\paragraph{Tiny example.} Among any $8$ people, two were born on the same day of the week. There are $8$ people and only $7$ days.
+
+\paragraph{The hard part is choosing the boxes.} The problem never tells you what they are. You want boxes such that:
+\begin{itemize}
+  \item there are fewer boxes than items, and
+  \item two items in the same box have the property you are after.
+\end{itemize}
+Here there are $11$ items, so you want at most $10$ boxes, and two numbers in the same box should have one dividing the other.
+
+\paragraph{The move in this problem.} Every positive integer is a power of $2$ times an odd number, in exactly one way:
+\[ 12 = 2^2 \cdot 3, \qquad 20 = 2^2 \cdot 5, \qquad 7 = 2^0 \cdot 7, \qquad 16 = 2^4 \cdot 1. \]
+Put numbers with the same odd part in the same box. The box for odd part $3$ holds $3, 6, 12$. Inside a box, each number is the previous one doubled, so the smaller always divides the larger.
+
+\paragraph{Reach for it when} you must prove that two things share a property and there are more things than possible properties.
+
+\section*{Small case}
+From $1, 2, 3, 4$ choose $3$ numbers. Boxes by odd part: $\{1, 2, 4\}$ and $\{3\}$. Two boxes, three numbers, so two of them come from $\{1, 2, 4\}$, and one divides the other. You can also see that choosing only $2$ numbers is not enough: $3$ and $4$.
+
+\section*{Solution}
+\begin{proof}
+Write each chosen number as $2^a m$ with $a \ge 0$ and $m$ odd. Call $m$ its odd part.
+
+The odd part of a number from $1$ to $20$ is an odd number from $1$ to $19$. There are only $10$ of those: $1, 3, 5, \dots, 19$.
+
+We chose $11$ numbers and there are $10$ possible odd parts. If every odd part were used at most once, there would be at most $10$ numbers. So two of the chosen numbers have the same odd part $m$. Write them as $2^a m$ and $2^b m$.
+
+The two numbers are different, so $a \ne b$. Say $a < b$. Then
+\[ 2^b m = 2^{b-a} \cdot 2^a m, \]
+so $2^a m$ divides $2^b m$. These are the two numbers required.
+\end{proof}
+
+\section*{How this is graded}
+\begin{itemize}
+  \item \textbf{Name the boxes and count them.} ``There are $10$ odd numbers from $1$ to $19$'' must appear.
+  \item \textbf{Say why the same box is enough.} The line $2^b m = 2^{b-a} \cdot 2^a m$ is the whole point. Without it the proof stops one step short.
+  \item \textbf{Use ``different.''} It is why $a \ne b$. A hypothesis that is never used usually means a gap.
+  \item Listing a few choices of $11$ numbers and finding a pair in each earns $0$ or $1$. Examples are not a proof of ``any.''
+\end{itemize}
+
+\section*{Is $11$ the right number?}
+Yes. The ten numbers $11, 12, \dots, 20$ contain no such pair, since doubling the smallest already gives $22$. So ten numbers are not enough and eleven always are. When a problem gives an exact number like this, checking that one fewer fails is a good way to confirm you understand it.
+\end{document}

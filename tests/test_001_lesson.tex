@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\usepackage{../putnamprep}
+\begin{document}
+\sessiontitle{Test 001: Lesson and solution}{Techniques: small cases, then induction \quad$\cdot$\quad files under \texttt{techniques/02\_induction}}
+
+\section*{The technique}
+
+\paragraph{Small cases, then induction.} This is the most common two-step on early Putnam problems.
+\begin{enumerate}
+  \item Compute the first few cases by hand and guess the pattern.
+  \item Prove the guess by induction.
+\end{enumerate}
+The guess is not a proof. The induction is not a way of finding the answer. You need both.
+
+\paragraph{Induction.} To prove a statement $P(n)$ for every $n \ge 1$: prove the first case, then show that each case follows from the ones before it.
+
+\paragraph{Tiny example.} Claim: $1 + 3 + 5 + \dots + (2n - 1) = n^2$. First case: $1 = 1^2$. Step: if the first $n$ odd numbers add to $n^2$, then adding the next one, $2n + 1$, gives $n^2 + 2n + 1 = (n+1)^2$.
+
+\paragraph{The trap, and the move in this problem.} The rule $a_{n+1} = 3a_n - 2a_{n-1}$ uses the \emph{two} previous terms. So the step needs the formula for two cases in a row, and the proof must start with \emph{two} base cases, $n = 1$ and $n = 2$. With only one base case, the step can never be applied the first time.
+
+\paragraph{Reach for it when} the object is built step by step: sequences, recursions, sums up to $n$, sets defined by rules.
+
+\section*{Small cases}
+\[ a_1 = 1, \quad a_2 = 3, \quad a_3 = 3 \cdot 3 - 2 \cdot 1 = 7, \quad a_4 = 3 \cdot 7 - 2 \cdot 3 = 15, \quad a_5 = 3 \cdot 15 - 2 \cdot 7 = 31. \]
+Each is one less than a power of $2$. The guess is $a_n = 2^n - 1$.
+
+\section*{Solution}
+\begin{answer}
+$a_n = 2^n - 1$ for every positive integer $n$.
+\end{answer}
+\begin{proof}
+By strong induction on $n$.
+
+\emph{Base cases.} $a_1 = 1 = 2^1 - 1$ and $a_2 = 3 = 2^2 - 1$.
+
+\emph{Step.} Let $n \ge 2$, and suppose $a_n = 2^n - 1$ and $a_{n-1} = 2^{n-1} - 1$. Then
+\begin{align*}
+a_{n+1} &= 3a_n - 2a_{n-1} \\
+        &= 3(2^n - 1) - 2(2^{n-1} - 1) \\
+        &= 3 \cdot 2^n - 3 - 2^n + 2 \\
+        &= 2 \cdot 2^n - 1 \\
+        &= 2^{n+1} - 1.
+\end{align*}
+So the formula holds for $n + 1$. By induction it holds for every positive integer $n$.
+\end{proof}
+
+\section*{How this is graded}
+\begin{itemize}
+  \item \textbf{Two base cases.} A proof that checks only $n = 1$ and then uses both $a_n$ and $a_{n-1}$ in the step loses points, even though the answer is right.
+  \item \textbf{Say what is being assumed.} ``Suppose the formula holds for $n$ and $n - 1$'' must appear before it is used.
+  \item \textbf{Answer first.} The formula goes in the first line, before the proof.
+  \item A table of $a_1$ through $a_6$ with ``so $a_n = 2^n - 1$'' and no induction earns $1$ or $2$.
+  \item Used $2 \cdot 2^{n-1} = 2^n$ in the algebra? Good. Show that line; it is where most slips happen.
+\end{itemize}
+\end{document}

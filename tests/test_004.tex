@@ -1,0 +1,34 @@
+\documentclass[11pt]{article}
+\usepackage{../putnamprep}
+\begin{document}
+\sessiontitle{Test 004}{One problem \quad$\cdot$\quad AoPS level about 6 \quad$\cdot$\quad 45 minutes, hard cap}
+
+\paragraph{Rules.}
+\begin{enumerate}
+  \item Write the start time. Stop at 45 minutes, writing included.
+  \item Try small cases first.
+  \item Write a proof even if it is partial. Say plainly where it stops.
+  \item You may quote any standard theorem by name.
+  \item The hint is on page 2. Not before 25 minutes. If you use it, say so.
+  \item Do not open \texttt{test\_004\_lesson.pdf} until your proof is written.
+\end{enumerate}
+
+\paragraph{Hand back.} Type your proof into a copy of \texttt{my\_solution.tex}, or write by hand and give Claude photos. Then say ``grade test 004.''
+
+\vspace{10pt}\hrule\vspace{10pt}
+
+\begin{problem}
+Find all positive integers $n$ such that $n$ divides $2^n - 1$.
+\end{problem}
+
+\vspace{10pt}\hrule
+
+\clearpage
+\section*{Hint}
+Not before 25 minutes.
+
+\spoilerspace
+\begin{hint}
+Suppose $n > 1$ works. Look at the \emph{smallest} prime $p$ dividing $n$. You know $2^n \equiv 1 \pmod p$. Fermat's little theorem gives a second exponent that also works.
+\end{hint}
+\end{document}

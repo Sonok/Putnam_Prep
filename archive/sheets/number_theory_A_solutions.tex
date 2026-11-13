@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+\usepackage{putnamprep}
+
+\begin{document}
+\sessiontitle{Number Theory: Rung A, Solutions}{Do not open until you have tried all six.}
+
+\paragraph{Answers.} \quad 1: $12$ \qquad 2: $49$ \qquad 3: $10$ \qquad 4: $48$ \qquad 5: $5$ \qquad 6: $15$
+
+\section*{Problem 1}
+\begin{answer} $12$. \end{answer}
+$3600 = 2^4 \cdot 3^2 \cdot 5^2$. A divisor $2^i 3^j 5^k$ is a perfect square exactly when $i, j, k$ are all even. The choices are $i \in \{0, 2, 4\}$, $j \in \{0, 2\}$, $k \in \{0, 2\}$. That is $3 \cdot 2 \cdot 2 = 12$ divisors.
+
+\section*{Problem 2}
+\begin{answer} $49$. \end{answer}
+Work mod $100$. $7^2 = 49$, and $7^4 = 49^2 = 2401 \equiv 1$. So the powers of $7$ repeat with period $4$. Since $2026 = 4 \cdot 506 + 2$,
+\[ 7^{2026} = (7^4)^{506} \cdot 7^2 \equiv 1 \cdot 49 = 49 \pmod{100}. \]
+
+\section*{Problem 3}
+\begin{answer} $10$. \end{answer}
+Numbers that are $2 \pmod 7$: $2, 9, 16, 23, \dots$ Test each against the other two conditions. $2$ fails mod $5$. $9$ fails mod $3$. $16$ fails mod $3$. $23$ works: $23 = 3 \cdot 7 + 2 = 5 \cdot 4 + 3$.
+
+The moduli $3, 5, 7$ share no common factors, so by Tool 5 (used twice) there is exactly one solution in every block of $3 \cdot 5 \cdot 7 = 105$ consecutive integers. So the solutions are $23 + 105k$ for $k = 0, 1, 2, \dots$
+
+We need $23 + 105k \le 1000$, so $k \le 9$ (since $23 + 945 = 968$ and $23 + 1050 > 1000$). That is $k = 0, 1, \dots, 9$: ten values.
+
+\section*{Problem 4}
+\begin{answer} $48$. \end{answer}
+$12^n = 2^{2n} \cdot 3^n$. Count each prime in $100!$ with Tool 2.
+Twos: divide $100$ by $2, 4, 8, 16, 32, 64$ and round down. That gives $50 + 25 + 12 + 6 + 3 + 1 = 97$.
+
+Threes: divide $100$ by $3, 9, 27, 81$ and round down. That gives $33 + 11 + 3 + 1 = 48$.
+
+We need $2n \le 97$ and $n \le 48$. The first gives $n \le 48$ as well. So the largest $n$ is $48$.
+
+\section*{Problem 5}
+\begin{answer} $5$. \end{answer}
+The fraction is not in lowest terms exactly when $\gcd(n + 7,\ 3n + 2) > 1$. By the Euclid step,
+\[ \gcd(n + 7,\ 3n + 2) = \gcd\bigl(n + 7,\ (3n + 2) - 3(n + 7)\bigr) = \gcd(n + 7,\ -19) = \gcd(n + 7,\ 19). \]
+Since $19$ is prime, this gcd is either $1$ or $19$. It is $19$ exactly when $19$ divides $n + 7$, that is, when $n \equiv 12 \pmod{19}$.
+
+For $1 \le n \le 100$ these are $n = 12, 31, 50, 69, 88$. The next one, $107$, is too big. So there are $5$ values.
+
+\emph{Check one:} $n = 12$ gives $\frac{19}{38}$, which reduces.
+
+\section*{Problem 6}
+\begin{answer} $15$. \end{answer}
+Multiply by $12xy$: $12y + 12x = xy$. Rearranged, $xy - 12x - 12y = 0$. Add $144$ to both sides:
+\[ (x - 12)(y - 12) = 144. \]
+So $x - 12$ and $y - 12$ are integers with product $144$. They have the same sign.
+
+\emph{Both negative is impossible.} Since $x, y \ge 1$, each factor is at least $-11$. Two negative numbers that are each between $-11$ and $-1$ have product at most $121 < 144$.
+
+\emph{Both positive.} Then $x - 12 = d$ for a positive divisor $d$ of $144$, and $y - 12 = 144/d$. Each divisor gives exactly one pair $(x, y)$, and different divisors give different pairs.
+
+$144 = 2^4 \cdot 3^2$ has $(4+1)(2+1) = 15$ positive divisors. So there are $15$ ordered pairs.
+
+\begin{gradingnote}
+The negative case is the step people skip. On a short-answer contest it costs nothing. In a written proof it is a gap, and it is exactly the kind of thing a Putnam grader takes points for.
+\end{gradingnote}
+\end{document}

@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\usepackage{../putnamprep}
+\begin{document}
+\sessiontitle{Test 004: Lesson and solution}{Technique: extremal principle \quad$\cdot$\quad files under \texttt{techniques/05\_extremal}}
+
+\section*{The technique}
+
+\paragraph{Extremal principle.} Pick the smallest (or largest) object of some kind. Then use the fact that nothing of that kind is smaller.
+
+\paragraph{Tiny example.} Every integer $n > 1$ has a prime divisor. Proof: let $d$ be the smallest divisor of $n$ that is bigger than $1$. If $d$ were not prime, it would have a divisor $e$ with $1 < e < d$, and $e$ would divide $n$ too. That contradicts ``smallest.'' So $d$ is prime.
+
+\paragraph{Reach for it when} you need a place to start, or you want a contradiction by producing something even smaller than the smallest.
+
+\paragraph{The move in this problem.} You know something about $n$ as a whole, which is hard to use. The smallest prime factor $p$ of $n$ is easy to use, because nothing below $p$ divides $n$ except $1$.
+
+\section*{Two facts the proof quotes}
+
+\paragraph{Fermat's little theorem.} If $p$ is prime and $p$ does not divide $a$, then $a^{p-1} \equiv 1 \pmod p$. Example: $2^4 = 16 \equiv 1 \pmod 5$.
+
+\paragraph{Orders.} Let $d$ be the smallest positive exponent with $a^d \equiv 1 \pmod p$. Then $d$ divides every exponent $e$ with $a^e \equiv 1 \pmod p$. Example: powers of $2$ mod $7$ are $2, 4, 1, 2, 4, 1, \dots$, so $d = 3$, and $2^e \equiv 1$ exactly when $3$ divides $e$.
+
+\emph{Why:} write $e = qd + r$ with $0 \le r < d$. Then $a^r \equiv 1$. Since $d$ was the smallest positive such exponent, $r = 0$.
+
+\section*{Small cases}
+$n = 1$: $1$ divides $1$. Yes. \quad $n = 2$: $2$ does not divide $3$. \quad $n = 3$: $3$ does not divide $7$. \quad $n = 4$: $4$ does not divide $15$. \quad $n = 5$: $5$ does not divide $31$. \quad $n = 6$: $6$ does not divide $63$.
+
+The guess is that only $n = 1$ works. Small cases give the guess. They never give the proof.
+
+\section*{Solution}
+\begin{answer}
+Only $n = 1$.
+\end{answer}
+\begin{proof}
+$n = 1$ works, since $1$ divides $2^1 - 1 = 1$.
+
+Suppose, for contradiction, that some $n > 1$ divides $2^n - 1$. Let $p$ be the smallest prime dividing $n$. Then $p$ divides $2^n - 1$, so $2^n \equiv 1 \pmod p$.
+
+Since $2^n - 1$ is odd, $p \ne 2$. So $p$ does not divide $2$, and Fermat's little theorem gives $2^{p-1} \equiv 1 \pmod p$.
+
+Let $d$ be the order of $2$ mod $p$. Then $d$ divides $n$ and $d$ divides $p - 1$.
+
+Suppose $d > 1$, and let $q$ be a prime dividing $d$. Then $q$ divides $p - 1$, so $q < p$. And $q$ divides $n$. That contradicts the choice of $p$ as the smallest prime dividing $n$. So $d = 1$.
+
+Then $2^1 \equiv 1 \pmod p$, so $p$ divides $1$, which is impossible. Hence no $n > 1$ works.
+\end{proof}
+
+\section*{How this is graded}
+\begin{itemize}
+  \item The idea worth the points is ``take the smallest prime factor.'' Without it there is no proof.
+  \item You must say why $p \ne 2$. Otherwise Fermat does not apply.
+  \item Checking that $n = 1$ works is part of the answer. Leaving it out costs a point.
+  \item Testing $n = 2$ through $20$ and concluding ``so only $n = 1$'' earns $0$ or $1$.
+\end{itemize}
+\end{document}

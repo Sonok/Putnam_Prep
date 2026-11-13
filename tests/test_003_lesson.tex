@@ -1,0 +1,49 @@
+\documentclass[11pt]{article}
+\usepackage{../putnamprep}
+\begin{document}
+\sessiontitle{Test 003: Lesson and solution}{Technique: pigeonhole \quad$\cdot$\quad files under \texttt{techniques/04\_pigeonhole}}
+
+\section*{The technique}
+
+\paragraph{Pigeonhole.} If $n$ items go into $k$ boxes, some box holds at least $n/k$ items, rounded up.
+
+\paragraph{Tiny example.} Five socks, each red or blue. Some color has at least $5/2$ rounded up, which is $3$ socks. Why: if both colors had at most $2$, there would be at most $4$ socks.
+
+\paragraph{That last sentence is the proof.} Whenever you use pigeonhole in a write-up, say it that way: ``if every box had at most $m$, the total would be at most $km$, which is less than $n$.''
+
+\paragraph{Reach for it when} you must prove that two or three things share a property, and there are more things than properties.
+
+\paragraph{The move in this problem.} Pigeonhole is used twice, and the second use happens \emph{inside} the group the first use produced. Each round removes one topic: three topics among $17$ people becomes two topics among $6$, then one topic among $3$.
+
+\section*{The smaller version first}
+
+\begin{claim}
+Among six people, where every pair writes about one of two topics, some three all write about the same topic.
+\end{claim}
+\begin{proof}
+Pick a person $B$. They write to $5$ others on $2$ topics. If each topic were used at most $2$ times, that would cover only $4$ people. So some topic, say topic $2$, is used with at least $3$ people; call three of them $X, Y, Z$. If some pair among $X, Y, Z$ writes about topic $2$, that pair and $B$ all write about topic $2$. Otherwise all three pairs among $X, Y, Z$ write about the other topic, and $X, Y, Z$ are the three people.
+\end{proof}
+
+\section*{Solution}
+
+\begin{proof}
+Call the topics $1$, $2$, $3$.
+
+Pick any person $A$. They write to $16$ others on $3$ topics. If each topic were used at most $5$ times, that would cover only $15$ people. So some topic is used with at least $6$ people. The topics play identical roles, so say it is topic $1$, and let $G$ be six of those people.
+
+If two people in $G$ write to each other about topic $1$, those two and $A$ all write about topic $1$, and we are done.
+
+Otherwise every pair inside $G$ writes about topic $2$ or topic $3$. Then $G$ is six people with two topics, and by the claim above some three of them all write about the same topic.
+\end{proof}
+
+\section*{How this is graded}
+\begin{itemize}
+  \item \textbf{Both counts must be stated:} $16$ into $3$ gives at least $6$, and $5$ into $2$ gives at least $3$. ``Clearly some topic is common'' loses points.
+  \item \textbf{The second round depends on the first one failing.} You must say that inside $G$ only topics $2$ and $3$ occur, otherwise the last step has a hole.
+  \item ``Say topic $1$'' is fine, and it is better with the reason: the topics are interchangeable.
+  \item Pulling the six-person case out as its own claim is what keeps the main proof short. A clean lemma plus a short main argument beats one long page of cases.
+\end{itemize}
+
+\section*{Why $17$?}
+The numbers are chosen so each round just barely works: $16 = 3 \cdot 5 + 1$ and $5 = 2 \cdot 2 + 1$. When a problem has an odd-looking number in it, ask what it is one more than.
+\end{document}

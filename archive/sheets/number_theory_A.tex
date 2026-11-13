@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\usepackage{putnamprep}
+
+\newtheorem*{tool}{Tool}
+
+\begin{document}
+\sessiontitle{Number Theory: Rung A}{AoPS level 2 to 3 \quad$\cdot$\quad short answers \quad$\cdot$\quad about 2 hours}
+
+\section*{How this sheet works}
+
+This sheet is self-contained. Nothing else needs to be open.
+
+Rung A sits at the level of the middle of an AMC 12 or the first five problems of an AIME. None of these are Putnam problems. They build the tools that Putnam number theory problems assume.
+
+\begin{center}
+\begin{tabular}{llr}
+\hline
+1 & Lesson: six tools, each with a tiny example & 20 min \\
+2 & Six problems, 15 minutes each at most & 90 min \\
+3 & One solution written out in full & 20 min \\
+4 & Check and log & 5 min \\
+\hline
+\end{tabular}
+\end{center}
+
+\paragraph{Rules.}
+\begin{itemize}
+  \item Write down the time you start and finish each problem.
+  \item At 15 minutes, stop and go to the next problem. Come back only if time is left at the end.
+  \item Each problem has one hint on the last page. Using it is fine. Just mark that you did.
+  \item This first sheet also shows where you stand. Four or more solved without hints means this topic moves to Rung B.
+\end{itemize}
+
+%=====================================================================
+\section{Lesson \hfill 20 min}
+
+Six tools. Read each one, then redo its example yourself on paper.
+
+\begin{tool}[1: counting divisors]
+If $n = p^a q^b r^c$ with $p, q, r$ different primes, then $n$ has $(a+1)(b+1)(c+1)$ positive divisors.
+\end{tool}
+\noindent\emph{Why.} A divisor is $p^i q^j r^k$ with $0 \le i \le a$, $0 \le j \le b$, $0 \le k \le c$. That is $a+1$ choices, times $b+1$, times $c+1$.
+
+\noindent\emph{Example.} $12 = 2^2 \cdot 3$ has $3 \cdot 2 = 6$ divisors: $1, 2, 3, 4, 6, 12$.
+
+\begin{tool}[2: powers of a prime in a factorial]
+The number of times a prime $p$ divides $n!$ is
+$\left\lfloor \frac{n}{p} \right\rfloor + \left\lfloor \frac{n}{p^2} \right\rfloor + \left\lfloor \frac{n}{p^3} \right\rfloor + \cdots$, where $\lfloor x \rfloor$ means round down.
+\end{tool}
+\noindent\emph{Why.} Every multiple of $p$ up to $n$ gives one factor of $p$. Every multiple of $p^2$ gives one more. And so on.
+
+\noindent\emph{Example.} How many $2$s in $10!$? $\lfloor 10/2 \rfloor + \lfloor 10/4 \rfloor + \lfloor 10/8 \rfloor = 5 + 2 + 1 = 8$.
+
+\begin{tool}[3: remainders, and powers that cycle]
+Write $a \equiv b \pmod m$ when $a$ and $b$ leave the same remainder on division by $m$. You may add and multiply remainders. Powers of a number, taken mod $m$, eventually repeat in a cycle.
+\end{tool}
+\noindent\emph{Example.} Powers of $2$ mod $7$: $2, 4, 1, 2, 4, 1, \dots$ The cycle has length $3$. Since $100 = 3 \cdot 33 + 1$, $2^{100}$ sits at the first spot in the cycle, so $2^{100} \equiv 2 \pmod 7$.
+
+\begin{tool}[4: the Euclid step]
+$\gcd(a, b) = \gcd(a,\ b - ka)$ for any integer $k$. Subtracting a multiple of one number from the other does not change the gcd.
+\end{tool}
+\noindent\emph{Example.} $\gcd(91, 35) = \gcd(21, 35) = \gcd(21, 14) = \gcd(7, 14) = 7$.
+
+\noindent This works with letters too: $\gcd(n,\ n + 6) = \gcd(n, 6)$.
+
+\begin{tool}[5: two remainders at once]
+If $m_1$ and $m_2$ share no common factor, then a pair of conditions $n \equiv r_1 \pmod{m_1}$, $n \equiv r_2 \pmod{m_2}$ has exactly one solution in every block of $m_1 m_2$ consecutive integers.
+\end{tool}
+\noindent\emph{Example.} $n$ odd and $n \equiv 2 \pmod 3$. Check $1$ to $6$: only $5$ works. So the solutions are $5, 11, 17, 23, \dots$, one in every block of $6$.
+
+\begin{tool}[6: complete the rectangle]
+An equation with an $xy$ term and single $x$, $y$ terms can often be factored by adding a constant to both sides: $xy + ax + by + ab = (x + b)(y + a)$.
+\end{tool}
+\noindent\emph{Example.} Positive integers with $xy = 2x + 2y$. Rewrite as $xy - 2x - 2y + 4 = 4$, so $(x - 2)(y - 2) = 4$. Now list the factor pairs of $4$: $(x, y) = (3, 6),\ (4, 4),\ (6, 3)$.
+
+%=====================================================================
+\section{Problems \hfill 90 min}
+
+Fifteen minutes each at most. Levels are estimates on the AoPS scale.
+
+\begin{problem}[level 2]
+How many positive divisors of $3600$ are perfect squares?
+\end{problem}
+
+\begin{problem}[level 2]
+What are the last two digits of $7^{2026}$?
+\end{problem}
+
+\begin{problem}[level 2.5]
+How many positive integers $n \le 1000$ leave remainder $2$ when divided by $3$, remainder $3$ when divided by $5$, and remainder $2$ when divided by $7$?
+\end{problem}
+
+\begin{problem}[level 2.5]
+What is the largest integer $n$ such that $12^n$ divides $100!$\,?
+\end{problem}
+
+\begin{problem}[level 3]
+For how many integers $n$ with $1 \le n \le 100$ is the fraction $\dfrac{n + 7}{3n + 2}$ \emph{not} in lowest terms?
+\end{problem}
+
+\begin{problem}[level 3]
+How many ordered pairs of positive integers $(x, y)$ satisfy $\dfrac{1}{x} + \dfrac{1}{y} = \dfrac{1}{12}$\,?
+\end{problem}
+
+%=====================================================================
+\section{Write-up \hfill 20 min}
+
+Pick Problem 5, or the hardest problem you solved. In \texttt{number\_theory\_A\_writeup.tex}, write the solution so that someone who has not seen the problem could check every step.
+\begin{itemize}
+  \item[\checkbox] Answer in the first line.
+  \item[\checkbox] Every step has a reason next to it.
+  \item[\checkbox] If you counted something, say why nothing is missed and nothing is counted twice.
+\end{itemize}
+
+\section{Check and log \hfill 5 min}
+\begin{enumerate}
+  \item Open \texttt{number\_theory\_A\_solutions.pdf} and mark each problem: solved, solved with hint, or not solved.
+  \item Fill in the table at the top of the write-up file.
+  \item Tell Claude to grade the write-up and log the sheet.
+\end{enumerate}
+
+%=====================================================================
+\clearpage
+\section*{Hints}
+One per problem. Look only after real effort on that problem.
+
+\begin{hint}[Problem 1]
+Factor $3600$ into primes. A divisor is a perfect square exactly when every exponent in it is even.
+\end{hint}
+
+\begin{hint}[Problem 2]
+``Last two digits'' means the remainder mod $100$. Compute $7^1, 7^2, 7^3, 7^4$ mod $100$ and look for a cycle.
+\end{hint}
+
+\begin{hint}[Problem 3]
+Find the smallest such $n$ by listing numbers that are $2$ more than a multiple of $7$ and testing them. After that, how far apart are the solutions?
+\end{hint}
+
+\begin{hint}[Problem 4]
+$12 = 2^2 \cdot 3$. Count the $2$s and the $3$s in $100!$ separately with Tool 2. Each copy of $12$ uses two $2$s and one $3$.
+\end{hint}
+
+\begin{hint}[Problem 5]
+The fraction is not in lowest terms exactly when $\gcd(n + 7,\ 3n + 2) > 1$. Use the Euclid step to remove $n$ from the second entry.
+\end{hint}
+
+\begin{hint}[Problem 6]
+Multiply both sides by $12xy$, move everything to one side, and complete the rectangle.
+\end{hint}
+\end{document}

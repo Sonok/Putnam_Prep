@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+\usepackage{../putnamprep}
+\begin{document}
+\sessiontitle{Test 005: Lesson and solution}{Technique: polynomial roots \quad$\cdot$\quad files under \texttt{techniques/12\_polynomial\_roots}}
+
+\section*{The technique}
+
+\paragraph{The fact.} A nonzero polynomial of degree $d$ has at most $d$ roots. So a polynomial with infinitely many roots is the zero polynomial.
+
+\paragraph{The way it gets used.} If two polynomials agree at infinitely many points, they are the same polynomial. Apply the fact to their difference.
+
+\paragraph{Tiny example.} Suppose $P$ is a polynomial with $P(n) = n^2$ for every positive integer $n$. Then $Q(x) = P(x) - x^2$ is zero at $1, 2, 3, \dots$ That is infinitely many roots, so $Q$ is zero and $P(x) = x^2$ for all real $x$.
+
+\paragraph{Reach for it when} the problem says ``find all polynomials.'' The plan is almost always the same three steps:
+\begin{enumerate}
+  \item guess the answer from small values;
+  \item show $P$ agrees with the guess at infinitely many points;
+  \item conclude they are equal.
+\end{enumerate}
+
+\paragraph{The move in this problem.} The equation turns one known value into another. If you know $P(a)$, you get $P(a^2 + 1)$. Starting from $P(0) = 0$ that produces a chain of values, and induction carries it on forever.
+
+\section*{Small cases}
+$x = 0$: $P(1) = P(0)^2 + 1 = 1$. \quad $x = 1$: $P(2) = P(1)^2 + 1 = 2$. \quad $x = 2$: $P(5) = P(2)^2 + 1 = 5$. \quad $x = 5$: $P(26) = 26$.
+
+The guess is $P(x) = x$.
+
+\section*{Solution}
+\begin{answer}
+Only $P(x) = x$.
+\end{answer}
+\begin{proof}
+\emph{It works.} If $P(x) = x$ then $P(0) = 0$ and $P(x^2 + 1) = x^2 + 1 = P(x)^2 + 1$.
+
+\emph{Nothing else works.} Let $P$ satisfy the conditions. Define $a_0 = 0$ and $a_{k+1} = a_k^2 + 1$, so the sequence begins $0, 1, 2, 5, 26$.
+
+\emph{Claim: $P(a_k) = a_k$ for every $k \ge 0$.} By induction on $k$. For $k = 0$, $P(0) = 0$ is given. If $P(a_k) = a_k$, then putting $x = a_k$ in the equation gives
+\[ P(a_{k+1}) = P(a_k^2 + 1) = P(a_k)^2 + 1 = a_k^2 + 1 = a_{k+1}. \]
+
+\emph{The $a_k$ are all different.} For every real $t$, $t^2 - t + 1 = \left(t - \tfrac12\right)^2 + \tfrac34 > 0$. So $a_{k+1} - a_k = a_k^2 - a_k + 1 > 0$, and the sequence is strictly increasing.
+
+So $Q(x) = P(x) - x$ is zero at the infinitely many different points $a_0, a_1, a_2, \dots$ A nonzero polynomial has only finitely many roots. Hence $Q$ is the zero polynomial, and $P(x) = x$.
+\end{proof}
+
+\section*{How this is graded}
+\begin{itemize}
+  \item ``Find all'' needs both halves: $P(x) = x$ works, and nothing else does. Missing the first half costs a point or two.
+  \item The $a_k$ must be shown to be different. If they repeated, there would be only finitely many roots and no conclusion. This is the step most often skipped.
+  \item Guessing $P(x) = x$ from $P(1) = 1$, $P(2) = 2$, $P(5) = 5$ with no further argument earns about $2$.
+\end{itemize}
+\end{document}

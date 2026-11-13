@@ -1,0 +1,267 @@
+\documentclass[11pt]{article}
+\usepackage{putnamprep}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{example}{Model solution}
+\newtheorem{exercise}{Exercise}
+
+\begin{document}
+\sessiontitle{Session 3 (lesson day, re-entry)}{Sunday 15 November 2026 \quad$\cdot$\quad finite subsets, five identities, arithmetic mod 4, one full proof \quad$\cdot$\quad 2.5 hours, hard stop}
+
+\section*{How this session works}
+
+This sheet is self-contained. You do not need Session 1, the guide, or anything else open.
+
+You stopped on 17 October in the middle of the first lesson, right after Cantor's diagonal argument. This session picks up at that exact spot and finishes the lesson. Nothing is restarted.
+
+\paragraph{About pace.} You said a problem takes you 40 to 60 minutes. That is a normal pace, and it is fast enough. The Putnam is 6 hours for 12 problems, and a score near the top 500 is roughly two or three problems fully solved. That is about two hours per solved problem. So this sheet has \textbf{one} real proof, with a full hour for it.
+
+\paragraph{The time boxes are caps, not targets.} When a box runs out, move on, even if you are not finished. Total is 2.5 hours. Stop there no matter what.
+
+\medskip
+\begin{center}
+\begin{tabular}{llr}
+\hline
+1 & Recall what you already know & 10 min \\
+2 & Lesson: four short pieces & 35 min \\
+3 & Three quick checks & 25 min \\
+4 & The main proof & up to 60 min \\
+5 & Write-up & 20 min \\
+6 & Close-out & 5 min \\
+\hline
+\end{tabular}
+\end{center}
+
+\paragraph{What to hand back.} Fill in \texttt{session03\_writeup.tex} with your proof from Section 4 and the short reflection. That file is what gets graded.
+
+%=====================================================================
+\section{Recall \hfill 10 min}
+
+Cover the box below. On paper, from memory, try these three. Rough is fine.
+\begin{enumerate}
+  \item What does ``proof by contradiction'' mean? One sentence.
+  \item What is the two-base-case trap in induction?
+  \item Someone hands you the list of strings $001,\ 111,\ 010$. Build a string that is not on the list, using the diagonal.
+\end{enumerate}
+Then uncover the box and check. Forgetting after four weeks is expected. The point of this step is to reload it, not to test you.
+
+\medskip
+\noindent\fbox{\parbox{0.97\linewidth}{\small
+\textbf{Contradiction.} To prove a statement, assume it is false and derive something impossible. To prove a set is infinite, assume it is finite. To prove something does not exist, assume it exists.
+
+\smallskip
+\textbf{Induction.} Prove $P(1)$. Then assume $P(n)$ and prove $P(n+1)$. \emph{Strong} induction: assume all of $P(1), \dots, P(n)$. \emph{The trap:} if the step uses both $P(n)$ and $P(n-1)$, the basis must prove two cases in a row, $P(1)$ and $P(2)$.
+
+\smallskip
+\textbf{Countable.} A set is countable if its elements can be written in a numbered list $s_1, s_2, s_3, \dots$ with nothing missing. $\N$, $\Z$, $\Q$ are countable. $\R$ is not.
+
+\smallskip
+\textbf{Cantor's diagonal argument.} Infinite $0$--$1$ strings cannot be listed. Given any list, build $b$ so that spot $k$ of $b$ is the opposite of spot $k$ of string $k$. Then $b$ differs from string $k$ at spot $k$, for every $k$, so $b$ is not on the list. For $001, 111, 010$ the diagonal reads $0, 1, 0$, so $b = 101$.
+}}
+
+%=====================================================================
+\section{Lesson \hfill 35 min}
+
+Read with a pen. Four short pieces. Each ends with a check question; answer it before moving on.
+
+\subsection{Finite subsets of a countable set \hfill 8 min}
+
+\begin{theorem}
+If $X$ is countable, then the set of all \emph{finite} subsets of $X$ is countable.
+\end{theorem}
+
+\begin{proof}
+List $X$ as $x_1, x_2, x_3, \dots$. Every nonempty finite subset has a \emph{largest index}. For $\{x_2, x_5\}$ it is $5$. For $\{x_1, x_3, x_9\}$ it is $9$.
+
+Sort the finite subsets into batches by largest index.
+\begin{itemize}
+  \item Batch 1: just $\{x_1\}$.
+  \item Batch 2: $\{x_2\}$ and $\{x_1, x_2\}$.
+  \item Batch 3: $\{x_3\},\ \{x_1, x_3\},\ \{x_2, x_3\},\ \{x_1, x_2, x_3\}$.
+  \item Batch $n$: you must take $x_n$, and you may take any subset of $\{x_1, \dots, x_{n-1}\}$. That is $2^{n-1}$ subsets. Finite.
+\end{itemize}
+Now write one long list: the empty set, then all of batch 1, then all of batch 2, and so on. Each batch is finite, so every finite subset shows up at some finite position. Nothing is missing. So the finite subsets are countable.
+\end{proof}
+
+\noindent\textbf{Check.} Which batch is $\{x_3, x_7, x_8\}$ in? How many subsets are in batch 4? Write them all out.
+
+\paragraph{Why ``finite'' matters.} The set $\{x_2, x_4, x_6, \dots\}$ has no largest index, so it never lands in any batch. And nothing else can rescue it: a subset of $X$ is the same thing as an infinite $0$--$1$ string (spot $k$ is $1$ if $x_k$ is in the subset), and Cantor says those cannot be listed. Finite subsets: countable. All subsets: uncountable.
+
+\subsection{Five identities worth memorizing \hfill 12 min}
+
+\begin{theorem}
+For all real $a, b, x, y, z$ and positive integers $n$:
+\begin{enumerate}
+  \item[(a)] $a^n - b^n = (a-b)\left(a^{n-1} + a^{n-2}b + \cdots + ab^{n-2} + b^{n-1}\right)$.
+  \item[(b)] If $n$ is \emph{odd}, $a^n + b^n = (a+b)\left(a^{n-1} - a^{n-2}b + \cdots - ab^{n-2} + b^{n-1}\right)$.
+  \item[(c)] $x^3 + y^3 + z^3 - 3xyz = (x+y+z)\left(x^2 + y^2 + z^2 - xy - yz - zx\right)$.
+  \item[(d)] $x^2 + y^2 + z^2 - xy - yz - zx = \tfrac{1}{2}\left((x-y)^2 + (y-z)^2 + (z-x)^2\right)$.
+  \item[(e)] $x^4 + 4y^4 = \left(x^2 + 2y^2 + 2xy\right)\left(x^2 + 2y^2 - 2xy\right)$.
+\end{enumerate}
+\end{theorem}
+
+Do not try to memorize all five today. Do this instead.
+
+\paragraph{See (a) with numbers.} Take $n = 3$: $a^3 - b^3 = (a-b)(a^2 + ab + b^2)$. With $a = 5$, $b = 2$: the left side is $125 - 8 = 117$, the right side is $3 \cdot 39 = 117$.
+
+\paragraph{The one-line meaning of each.}
+\begin{itemize}
+  \item (a): $a - b$ always divides $a^n - b^n$.
+  \item (b): $a + b$ divides $a^n + b^n$, but only when $n$ is odd.
+  \item (c) and (d): for real numbers, $x^3 + y^3 + z^3 = 3xyz$ exactly when $x + y + z = 0$ or $x = y = z$.
+  \item (e): $x^4 + 4y^4$ always factors. It is named after Sophie Germain.
+\end{itemize}
+
+\noindent\textbf{Check.} Expand the right side of (a) for $n = 3$ by hand and watch the middle terms cancel. Then expand the right side of (e). (Shortcut: it is $(A + B)(A - B)$ with $A = x^2 + 2y^2$ and $B = 2xy$.)
+
+\subsection{Arithmetic mod 4 \hfill 7 min}
+
+You need this for the main proof. It is small.
+
+Divide an integer by $4$. The remainder is $0$, $1$, $2$, or $3$. We write $a \equiv r \pmod 4$ to say $a$ has the same remainder as $r$.
+\begin{itemize}
+  \item Even numbers have remainder $0$ or $2$.
+  \item Odd numbers have remainder $1$ or $3$. Examples: $5 \equiv 1$, \ $13 \equiv 1$, \ $7 \equiv 3$, \ $11 \equiv 3$.
+  \item ``Of the form $4k - 1$'' means remainder $3$. These are $3, 7, 11, 15, 19, 23, \dots$
+\end{itemize}
+
+\paragraph{Remainders multiply.} To find the remainder of a product, multiply the remainders.
+\begin{center}
+\begin{tabular}{lll}
+$1 \cdot 1 = 1$ & so $(\equiv 1)\cdot(\equiv 1) \equiv 1$ & e.g.\ $5 \cdot 13 = 65 = 64 + 1$ \\
+$1 \cdot 3 = 3$ & so $(\equiv 1)\cdot(\equiv 3) \equiv 3$ & e.g.\ $5 \cdot 7 = 35 = 32 + 3$ \\
+$3 \cdot 3 = 9 \equiv 1$ & so $(\equiv 3)\cdot(\equiv 3) \equiv 1$ & e.g.\ $7 \cdot 11 = 77 = 76 + 1$ \\
+\end{tabular}
+\end{center}
+
+\begin{lemma}
+A product of integers that are each $\equiv 1 \pmod 4$ is itself $\equiv 1 \pmod 4$.
+\end{lemma}
+\begin{proof}
+For two factors: $(4s+1)(4t+1) = 4(4st + s + t) + 1$. For more factors, multiply them in one at a time; the running product stays $\equiv 1$ at every step.
+\end{proof}
+
+\noindent\textbf{Check.} Look at the third row of the table. Can a number that is $\equiv 1 \pmod 4$ be built entirely from primes that are $\equiv 3 \pmod 4$? Give an example. (Keep your answer. It matters at the very end of today.)
+
+\subsection{What a 10/10 write-up looks like \hfill 8 min}
+
+On the Putnam, a right idea written loosely scores $0$ to $2$ out of $10$. Here is a classic proof written the way a grader wants it.
+
+\begin{example}[Infinitely many primes]
+\textit{Claim.} There are infinitely many primes.
+
+\textit{Proof.} Suppose, for contradiction, that there are only finitely many primes, and let $p_1, p_2, \dots, p_n$ be all of them. Consider $N = p_1 p_2 \cdots p_n + 1$. Since $N > 1$, $N$ has at least one prime divisor; call it $p$. Since $p_1, \dots, p_n$ are all the primes, $p = p_i$ for some $i$. Then $p_i$ divides both $N$ and $p_1 \cdots p_n$, so $p_i$ divides their difference, which is $1$. No prime divides $1$. This contradiction shows that there are infinitely many primes. \qed
+\end{example}
+
+Why each sentence is there:
+\begin{itemize}
+  \item ``Suppose, for contradiction'' tells the grader the shape of the argument in four words.
+  \item ``Since $N > 1$'' is the reason $N$ has a prime divisor at all. Students skip it. Graders notice.
+  \item ``$p = p_i$ for some $i$'' is where the finiteness assumption is used. Every assumption must be visibly used somewhere.
+  \item ``divides their difference'' is the key step, stated as a fact, not waved at.
+  \item ``No prime divides $1$'' names the contradiction. Never end with just ``contradiction!''
+\end{itemize}
+
+\noindent\textbf{Check.} Run the proof on a pretend complete list $2, 3, 5$. What is $N$? Which prime divides it? Is that prime on the list?
+
+%=====================================================================
+\section{Three quick checks \hfill 25 min}
+
+About 8 minutes each. If one is not done at 8 minutes, write down how far you got and move on. The solutions file covers all three.
+
+\begin{exercise}
+First, with numbers: $2^6 - 1 = 63$. Use identity (a) with $a = 2^2 = 4$, $b = 1$, $n = 3$ to factor $63$. Then prove the general fact: if $n$ is composite, then $2^n - 1$ is composite.
+\end{exercise}
+
+\begin{exercise}
+First, with numbers: factor $2^4 + 4 = 20$ and $3^4 + 4 = 85$ using identity (e) with $y = 1$. Then show $n^4 + 4$ is never prime for $n \ge 2$. Which factor is the smaller one, and why is it at least $2$?
+\end{exercise}
+
+\begin{exercise}
+Here is a wrong proof. Find the error.
+\begin{quote}
+\textit{Claim: all horses are the same color. Induction on the number $n$ of horses. Basis: one horse is the same color as itself. Step: given $n+1$ horses, remove one; the remaining $n$ are the same color by hypothesis. Put it back and remove a different one; again the remaining $n$ are the same color. So all $n+1$ share a color.}
+\end{quote}
+Try the step with exactly two horses. What goes wrong? Connect it to the two-base-case trap.
+\end{exercise}
+
+%=====================================================================
+\section{The main proof \hfill up to 60 min}
+
+\begin{problem}
+Prove that there are infinitely many primes of the form $4k - 1$.
+\end{problem}
+
+\begin{why}
+It is Euclid's proof with one extra wrinkle, so you already hold the skeleton. Everything it needs is in Section 2 of this sheet. And it is a standard fact that Putnam problems assume you have seen.
+\end{why}
+
+\paragraph{Rules.}
+\begin{enumerate}
+  \item Timer on. Write the start time on your paper.
+  \item Keep an ``ideas tried'' list, failures included.
+  \item Being stuck here is the training. It is not a sign the session is going badly.
+  \item Hints are on the last page. No Hint 1 before 20 minutes. No Hint 2 before 40.
+  \item At 60 minutes, stop and write up whatever you have.
+\end{enumerate}
+
+\paragraph{Checkpoints.} These are questions, not hints.
+\begin{itemize}
+  \item \textbf{10 min.} Suppose the complete list of such primes were just $3$. Euclid's number would be $3 + 1 = 4 = 2 \cdot 2$. Does $4$ have a prime factor of the form $4k-1$? So why is ``product plus one'' not good enough?
+  \item \textbf{25 min.} Do you have a replacement number? Have you tried it on the lists $\{3\}$, $\{3, 7\}$, and $\{3, 7, 11\}$, and factored what came out?
+  \item \textbf{40 min.} Your number needs three properties. Can you name all three?
+\end{itemize}
+
+%=====================================================================
+\section{Write-up \hfill 20 min}
+
+Write the proof in \texttt{session03\_writeup.tex} as if to a Putnam grader. Model it on the Euclid write-up in Section 2.4. If you did not finish the proof, write up exactly what you did prove, and mark the gap honestly. That is still worth grading.
+
+Before writing, run this checklist:
+\begin{itemize}
+  \item[\checkbox] \textbf{State the claim in the first line.}
+  \item[\checkbox] \textbf{Every assumption used?} An unused assumption almost always means a hole.
+  \item[\checkbox] \textbf{No claim you know to be false.} A grader who sees one stops reading.
+  \item[\checkbox] \textbf{Name the contradiction.} The last sentence says exactly what impossible thing you reached.
+\end{itemize}
+
+\section{Close-out \hfill 5 min}
+\begin{enumerate}
+  \item \emph{Now} open \texttt{session03\_solutions.pdf}. Compare your proof line by line. For each difference decide: cosmetic, or a real gap?
+  \item Fill in the reflection in the write-up file.
+  \item Tell Claude to grade the write-up and log the session.
+\end{enumerate}
+
+\paragraph{Next Sunday (22 November).} Session 2, the struggle day on Putnam 2017 A1. It is already built. One problem, up to 90 minutes.
+
+%=====================================================================
+\clearpage
+\section*{Hints for the main proof}
+Staged at 20 and 40 minutes. Scroll only when the timer says so.
+
+\spoilerspace
+\begin{hint}[1, after 20 min]
+Suppose $p_1, \dots, p_n$ are all the primes of the form $4k - 1$. Try the number
+\[ d = 4\,p_1 p_2 \cdots p_n - 1. \]
+Compute it for small pretend lists and factor it:
+\begin{itemize}
+  \item list $\{3\}$: \ $d = 11$;
+  \item list $\{3, 7\}$: \ $d = 83$;
+  \item list $\{3, 7, 11\}$: \ $d = 923 = 13 \cdot 71$.
+\end{itemize}
+Find the remainder mod $4$ of every prime factor you see. What always shows up?
+\end{hint}
+
+\spoilerspace
+\begin{hint}[2, after 40 min]
+Three properties of $d$:
+\begin{itemize}
+  \item $d$ is odd, so $2$ is not a factor;
+  \item no $p_i$ divides $d$ (what remainder does $d$ leave when divided by $p_i$?);
+  \item $d \equiv 3 \pmod 4$.
+\end{itemize}
+By the first two, every prime factor of $d$ is odd and is not on the list. If the list really were complete, what would every prime factor of $d$ be mod $4$? Now use the Lemma from Section 2.3.
+\end{hint}
+\end{document}

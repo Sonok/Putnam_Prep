@@ -1,0 +1,39 @@
+% Shared preamble for Putnam Prep session sheets
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{putnamprep}
+\RequirePackage[letterpaper,margin=1in]{geometry}
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{lmodern}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{microtype}
+\RequirePackage{xcolor}
+\RequirePackage{fancyhdr}
+\RequirePackage[colorlinks=true,linkcolor=black,urlcolor=blue!50!black]{hyperref}
+
+\newcommand{\sessiontitle}[2]{%
+  \pagestyle{fancy}\fancyhf{}
+  \fancyhead[L]{\small Putnam Prep}\fancyhead[R]{\small #1}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \begin{center}
+    {\LARGE\bfseries #1}\\[4pt]
+    {\large #2}
+  \end{center}\vspace{4pt}}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem*{answer}{Answer}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{hint}{Hint}
+\theoremstyle{remark}
+\newtheorem*{gradingnote}{Grading notes}
+\newtheorem*{why}{Why this problem}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\checkbox}{$\square$\ }
+\newcommand{\blank}[1][2cm]{\underline{\hspace{#1}}}
+\newcommand{\spoilerspace}{\vspace{4cm}}
